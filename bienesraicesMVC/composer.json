@@ -1,0 +1,24 @@
+{
+    "name": "pc/bienesraices",
+    "description": "Proyecto Facundo Jaurgeui",
+    "type": "project",
+    "authors": [{
+        "name": "Facundo",
+        "email": "jauregui23fl@gmail.com"
+    }],
+    "require": {
+        "intervention/image": "^2.5",
+        "firebase/php-jwt": "^5.3",
+        "phpmailer/phpmailer": "^6.5"
+    },
+    "autoload": {
+
+        "psr-4": {
+
+            "Model\\": "./models",
+            "MVC\\": "./",
+            "Controllers\\":"./controllers"
+
+        }
+    }
+}
