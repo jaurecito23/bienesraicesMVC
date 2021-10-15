@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 
@@ -20,10 +20,10 @@ if(isset($_SESSION["idCarrito"])){
 }else{
 
     echo $total;
-    
- }
 
- echo $total;
+}
+session_write_close();
+echo $total;
 
 
 

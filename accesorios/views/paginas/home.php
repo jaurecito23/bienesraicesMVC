@@ -155,7 +155,8 @@
 							</ul>
 							<h2 class="text-uppercase"> Semana de Ofertas </h2>
 							<p>Solo por esta semana un 10% OFF en tus compras</p>
-							<a class="primary-btn cta-btn animar-btn" href="tienda?categoria=1">Comprar Ahora </a>
+							<p>Y vos, ¿ Te lo vas a perder ?</p>
+							<a class="primary-btn cta-btn animar-btn" href="tienda?categoria=1"> Comprar Ahora </a>
 						</div>
 					</div>
 				</div>

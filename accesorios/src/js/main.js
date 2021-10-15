@@ -11,6 +11,9 @@
 	$('.cart-dropdown').on('click', function (e) {
 		e.stopPropagation();
 	});
+	$('.favoritos-dropdown').on('click', function (e) {
+		e.stopPropagation();
+	});
 
 	/////////////////////////////////////////
 

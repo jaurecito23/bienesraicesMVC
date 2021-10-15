@@ -11,22 +11,31 @@ session_start();
 
 // Verifica si existe carrito y sino lo crea
 
-if(isset($_SESSION["idCarrito"])){
+if(!isset($_SESSION["id_usuario"])){
 
-    $idCarrito = $_SESSION["idCarrito"];
+
+    if(isset($_SESSION["idCarrito"])){
+
+        $idCarrito = $_SESSION["idCarrito"];
+
+    }else{
+
+        $idCarrito = ProductoCarrito::creandoCarrito();
+        $_SESSION["idCarrito"] = $idCarrito;
+
+    }
 
 }else{
 
-    $idCarrito = ProductoCarrito::creandoCarrito();
-    $_SESSION["idCarrito"] = $idCarrito;
+    $id_usuario = $_SESSION["id_usuario"];
+    $idCarrito = ProductoCarrito::obtenerIdCarrito($id_usuario);
 
- }
-
- // Obtienes los productos del carrito
+}
+// Obtienes los productos del carrito
 
 $productos = ProductoCarrito::obtenerProductosCarrito($idCarrito);
 
-
- echo json_encode($productos);
+session_write_close();
+echo json_encode($productos);
 
 //echo $idCarrito;

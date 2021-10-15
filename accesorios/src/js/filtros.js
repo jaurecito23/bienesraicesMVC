@@ -15,8 +15,21 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 let cambiarCantidad = document.querySelector(".cambiar-cantidad");
 let selectFiltro = document.querySelector(".filtrar-descuento");
-let id_ultimo_producto = document.querySelector(".ultimo-producto").value;
-let id_primer_producto = document.querySelector(".primer-producto").value;
+
+let ultimo_producto = document.querySelector(".ultimo-producto");
+let primer_producto = document.querySelector(".primer-producto");
+
+let id_ultimo_producto = null;
+let id_primer_producto = null;
+
+if(ultimo_producto){
+
+     id_ultimo_producto = ultimo_producto.value;
+     id_primer_producto = primer_producto.value;
+
+
+}
+
 console.log(id_ultimo_producto,"ultimo_id");
 console.log(id_primer_producto,"primer_id");
 let id_categoria = 1;

@@ -4,8 +4,8 @@
 
 function conectarDB():mysqli{
 
-  // $db = new mysqli("localhost","c2390677_ventas","dimu17daNI","c2390677_ventas");
-   $db = new mysqli("localhost","root","root","auriculares_premium");
+   //$db = new mysqli("localhost","c2390677_ventas","dimu17daNI","c2390677_ventas");
+   $db = new mysqli("localhost","root","root","c2390677_ventas");
     if($db){
 
         return $db;

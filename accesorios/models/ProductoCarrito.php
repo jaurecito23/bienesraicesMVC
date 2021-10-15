@@ -13,9 +13,9 @@ public static function encontrarProducto($id){
             $id = self::$db->escape_string($id);
                 $query = "SELECT * FROM productos WHERE id='${id}'";
 
-            
+
               $producto = self::consultarSQL($query);
-                  
+
               return array_shift($producto);
 
         }catch(Exception $e){
@@ -68,10 +68,11 @@ public static function insertarProductoAlCarrito($id,$idCarrito){
     $idCarrito = filter_var($idCarrito,FILTER_VALIDATE_INT);
 
     $query = "INSERT INTO productos_carrito (id_carrito,id_producto) VALUES(${idCarrito},${id});";
-   
+
          $resultado = self::$db->query($query);
 
     if($resultado){
+
 
      $producto = static::encontrarProducto($id);
      return $producto;
@@ -85,7 +86,7 @@ public static function creandoCarrito(){
 // Si el cliente esta registrado habra una session con el id de cliente
 // De lo contrario usara el usuario default
 
-    $idUsuario = $_SESSION["idUsuario"] ?? 1;
+    $idUsuario = $_SESSION["id_usuario"] ?? 1;
 
     $idUsuario = self::$db->escape_string($idUsuario);
 
@@ -94,7 +95,7 @@ public static function creandoCarrito(){
 
     /// Creamos el carrito
     $query = "INSERT INTO carritos (id_usuario,terminado,notificado,fecha,tipoPago) VALUES(${idUsuario},0,0,'0000-00-00','null')";
-    
+
 
      $resultado = self::$db->query($query);
 
@@ -102,6 +103,38 @@ public static function creandoCarrito(){
 
         $idCarrito = self::$db->insert_id;
 
+        return $idCarrito;
+     }
+
+}
+public static function obtenerIdCarrito($idUsuario){
+
+// Si el cliente esta registrado habra una session con el id de cliente
+// De lo contrario usara el usuario default
+
+    $idUsuario = self::$db->escape_string($idUsuario);
+    $idUsuario = filter_var($idUsuario,FILTER_VALIDATE_INT);
+
+    /// Obtenemos  el  id carrito
+    $query = "SELECT * FROM carritos WHERE id_usuario = '$idUsuario' LIMIT 1;";
+
+
+     $resultado = self::$db->query($query);
+
+     if($resultado){
+
+        $idCarrito = null;
+
+        if($resultado->num_rows == 0){
+
+            $idCarrito = static::creandoCarrito();
+
+        }else{
+
+            $resultado = mysqli_fetch_assoc($resultado);
+            $idCarrito = $resultado["id"];
+
+        }
         return $idCarrito;
      }
 

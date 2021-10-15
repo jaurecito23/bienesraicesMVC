@@ -7,7 +7,7 @@ require "../includes/funciones/app.php";
  $id = $_POST["id"];
  $id = filter_var($id,FILTER_VALIDATE_INT);
  //$producto = ProductoCarrito::encontrarProducto($id);
- 
+
  $idCarrito = NULL;
  session_start();
 

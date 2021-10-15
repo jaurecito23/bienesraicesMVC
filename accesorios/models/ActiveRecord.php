@@ -20,7 +20,9 @@ class ActiveRecord{
 
         if(is_null($this->id)){
 
-           $this->crear();
+         $resultado =  $this->crear();
+
+         return $resultado;
 
         }else{
 
@@ -41,38 +43,23 @@ class ActiveRecord{
             $query .=join("' ,'",array_values($atributos));
             $query .= "');";
 
+           
+        
 
             $resultado = self::$db->query($query);
 
-            $tipo = static::$tabla;
+
             $idInsertado = self::$db->insert_id;
 
 
+           
 
-            if($resultado){
-                if($tipo == "clientes"){
+            return array(
+                
+                "resultado"=>$resultado,
+                "id_insertado"=>$idInsertado
 
-
-                if(isset($_POST["contraseña"])){
-                    $contraseña = $_POST["contraseña"][1];
-                    $this->setearContraseña($contraseña,$idInsertado);
-                }
-                    $sesion = $this->iniciarSesion($idInsertado);
-
-                }
-                if($tipo == "boxs"){
-
-                    header("Location: /tufrutiya/tufrutiya/admin/boxproductos?id=${idInsertado}");
-
-                }else{
-
-                    $this->setearFechaCierre($idInsertado);
-                    header('Location: /tufrutiya/tufrutiya/admin/crear?resultado=1');
-                }
-
-            }
-
-            return $resultado;
+            ); 
 
     }
 
@@ -259,8 +246,12 @@ public static function crearObjeto($registro){
 
 
     }
-   $objeto->imagenes = $objeto->obtenerImagenes();
+  
+    if(static::$tabla == "productos"){
 
+        $objeto->imagenes = $objeto->obtenerImagenes();
+        
+    }
 
     return $objeto;
 
